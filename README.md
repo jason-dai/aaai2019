@@ -7,3 +7,5 @@ Recent breakthroughs in artificial intelligence applications have brought deep l
 
 ## Schedule
 June 19 (9AM - 12PM)
+
+| Motivation | 9:30 - 9:40 | | Overview | 9:40 - 10:00 |
