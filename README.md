@@ -8,4 +8,11 @@ Recent breakthroughs in artificial intelligence applications have brought deep l
 ## Schedule
 June 19 (9AM - 12PM)
 
-| Motivation | 9:30 - 9:40 | | Overview | 9:40 - 10:00 |
+|9:00 - 9:10   | Motivation |
+|9:10 - 9:30   | Overview |
+|9:00 - 10:00  | Analytics Zoo for Spark and BigDL |
+|10:00 - 10:30 | Break |
+|10:30 - 11:00 | Distributed training and inference  |
+|11:00 - 11:30 | Advanced applications  |
+|11:30 - 11:50 | Real-world applications |
+|11:50 - 12:00 | Q&A |
