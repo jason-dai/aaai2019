@@ -1,7 +1,7 @@
 ## Building Deep Learning Applications on Big Data Platforms 
 **_An introduction to [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo) for Apache Spark and BigDL_**
 
-_June 19 (9AM - 12PM) 2018, Room 151 ABCG_
+_CVPR 2018, June 19 (9AM - 12PM) 2018, Room 151 ABCG_
 
 ___
 
