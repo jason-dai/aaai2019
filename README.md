@@ -1,7 +1,8 @@
-# Building Deep Learning Applications on Big Data Platforms
+# CVPR 2018 [Tutorial](http://cvpr2018.thecvf.com/program/tutorials): Building Deep Learning Applications on Big Data Platforms
+
 **_An introduction to [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo) for Apache Spark and BigDL_**
 
-*CVPR 2018 [Tutorial](http://cvpr2018.thecvf.com/program/tutorials), June 19 (9AM - 12PM), Room 151 ABCG*
+*June 19 (9AM - 12PM) 2018, Room 151 ABCG*
 
 ___
 
