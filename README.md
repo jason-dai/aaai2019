@@ -1,5 +1,5 @@
 ## Build Deep Learning Applications for Big Data Using _Analytics Zoo_ 
-**_An introduction to [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo) (analytics + AI platform for Apache Spark and BigDL)_**
+**_An Introduction to [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo): Analytics + AI Platform for Apache Spark and BigDL_**
 
 ___
 
