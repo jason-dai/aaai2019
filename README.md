@@ -21,3 +21,8 @@ _June 19 (9AM - 12PM) 2018, Room 151 ABCG_
 |11:00 - 11:30 | Advanced applications ([notenook I](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/variational-autoencoder/using_variational_autoencoder_to_generate_digital_numbers.ipynb), [notenook II](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/variational-autoencoder/using_variational_autoencoder_to_generate_faces.ipynb), [notenook III](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/recommendation/ncf-explicit-feedback.ipynb)) |
 |11:30 - 11:50 | Real-world applications ([notebook](https://github.com/intel-analytics/analytics-zoo/pull/409)) |
 |11:50 - 12:00 | Q&A |
+
+## Slides
+<div align="center">
+  <img src="slides/BigData_DL_Jason-CVPR.jpg"><br>
+</div>
