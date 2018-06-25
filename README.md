@@ -23,6 +23,4 @@ _June 19 (9AM - 12PM) 2018, Room 151 ABCG_
 |11:50 - 12:00 | Q&A |
 
 ## Slides
-<div align="center">
-  <img src="slides/BigData_DL_Jason-CVPR.jpg"><br>
-</div>
+<a href="slides/BigData_DL_Jason-CVPR.pdf" target="_blank"><img src="slides/BigData_DL_Jason-CVPR.jpg" alt="slides" width="480" height="270" border="10" /></a>
