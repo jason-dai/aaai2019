@@ -22,5 +22,5 @@ _June 19 (9AM - 12PM) 2018, Room 151 ABCG_
 | 11:30 - 11:50 | Real-world applications ([notebook I](https://github.com/intel-analytics/analytics-zoo/pull/409), [notebook II](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/fraud-detection/fraud-detection.ipynb)) |
 | 11:50 - 12:00 | Q&A |
 
-## Slides
-<a href="slides/BigData_DL_Jason-CVPR.pdf" target="_blank"><img src="slides/BigData_DL_Jason-CVPR.jpg" alt="slides" width="480" height="270" border="10" /></a>
+## Slides ([pdf](slides/BigData_DL_Jason-CVPR.pdf))
+<a href="https://www.slideshare.net/jason-dai/build-deep-learning-applications-for-big-data-platforms" target="_blank"><img src="slides/BigData_DL_Jason-CVPR.jpg" alt="slides" width="480" height="270" border="10" /></a>
