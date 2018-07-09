@@ -19,8 +19,10 @@ _June 19 (9AM - 12PM) 2018, Room 151 ABCG_
 | 10:00 - 10:30 | Break |
 | 10:30 - 11:00 | Distributed training |
 | 11:00 - 11:30 | Advanced applications ([notenook I](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/variational-autoencoder/using_variational_autoencoder_to_generate_digital_numbers.ipynb), [notenook II](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/variational-autoencoder/using_variational_autoencoder_to_generate_faces.ipynb), [notenook III](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/recommendation/ncf-explicit-feedback.ipynb)) |
-| 11:30 - 11:50 | Real-world applications ([notebook I](https://github.com/intel-analytics/analytics-zoo/pull/409), [notebook II](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/fraud-detection/fraud-detection.ipynb)) |
+| 11:30 - 11:50 | Real-world applications ([notebook I](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/image-similarity/Image%20similarity.ipynb), [notebook II](https://github.com/intel-analytics/analytics-zoo/blob/master/apps/fraud-detection/fraud-detection.ipynb)) |
 | 11:50 - 12:00 | Q&A |
 
-## Slides ([pdf](slides/BigData_DL_Jason-CVPR.pdf))
-<a href="https://www.slideshare.net/jason-dai/build-deep-learning-applications-for-big-data-platforms" target="_blank"><img src="slides/BigData_DL_Jason-CVPR.jpg" alt="slides" width="480" height="270" border="10" /></a>
+## Tutorial
+* YouTube ([part I](https://www.youtube.com/watch?v=qrNMqsDPVkE), [part II](https://www.youtube.com/watch?v=zkP2ETLH_kg))
+* SlideShare ([link](https://www.slideshare.net/jason-dai/build-deep-learning-applications-for-big-data-platform))
+* Slides ([pdf](slides/BigData_DL_Jason-CVPR.pdf))
