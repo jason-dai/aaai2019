@@ -24,5 +24,5 @@ _June 19 (9AM - 12PM) 2018, Room 151 ABCG_
 
 ## Tutorial
 * YouTube ([part I](https://www.youtube.com/watch?v=qrNMqsDPVkE), [part II](https://www.youtube.com/watch?v=zkP2ETLH_kg))
-* SlideShare ([link](https://www.slideshare.net/jason-dai/build-deep-learning-applications-for-big-data-platform))
+* SlideShare ([link](https://www.slideshare.net/jason-dai/build-deep-learning-applications-for-big-data-platforms))
 * Slides ([pdf](slides/BigData_DL_Jason-CVPR.pdf))
