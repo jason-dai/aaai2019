@@ -22,14 +22,11 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 ---
 
 ## Overview
-- [Distributed Tensoflow and Keras on Spark](#distributed-tensoflow-and-keras-on-spark): data wrangling and analysis using PySpark, deep learning model development using TensorFlow or Keras, distributed training/inference on Spark and BigDL - all within a single unified pipeline in a transparent fashion
-
-- [Distributed Tensoflow and Keras on Spark](#distributed-tensoflow-and-keras-on-spark)
+- [Distributed Tensoflow and Keras on Spark/BigDL](#distributed-tensoflow-and-keras-on-spark)
   - Data wrangling and analysis using PySpark
   - Deep learning model development using TensorFlow or Keras
   - Distributed training/inference on Spark and BigDL
   - All within a single unified pipeline and in a user-transparent fashion!
-
 
 - [High level abstractions and APIs](#high-level-abstractions-and-apis)
   - [`nnframes`](#nnframes): native deep learning support in *Spark DataFrames and ML Pipelines*
