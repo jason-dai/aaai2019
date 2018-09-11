@@ -42,7 +42,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
   
 - [Reference use cases](#reference-use-cases): a collection of end-to-end *reference use cases* (e.g., anomaly detection, sentiment analysis, fraud detection, image augmentation, object detection, variational autoencoder, etc.)
 
-## _Distributed Tensoflow and Keras on Spark_
+## _Distributed Tensoflow and Keras on Spark/BigDL_
 
 ## _High level abstractions and APIs_
 Analytics Zoo provides a set of easy-to-use, high level pipeline APIs that natively support Spark DataFrames and ML Pipelines, autograd and custom layer/loss, transfer learning, etc.
