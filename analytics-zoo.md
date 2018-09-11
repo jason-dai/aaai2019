@@ -22,7 +22,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 ---
 
 ## Overview
-- [High level pipeline APIs](#high-level-pipeline-apis)
+- [High level abstractions and APIs](#high-level-pipeline-apis)
   - [`nnframes`](#nnframes): native deep learning support in *Spark DataFrames and ML Pipelines*
   - [`autograd`](#autograd): build custom layer/loss using *auto differentiation operations* 
   - [Transfer learning](#transfer-learning): customize pretained model for *feature extraction or fine-tuning*
@@ -36,7 +36,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
   
 - [Reference use cases](#reference-use-cases): a collection of end-to-end *reference use cases* (e.g., anomaly detection, sentiment analysis, fraud detection, image augmentation, object detection, variational autoencoder, etc.)
 
-## _High level pipeline APIs_
+## _High level abstractions and APIs_
 Analytics Zoo provides a set of easy-to-use, high level pipeline APIs that natively support Spark DataFrames and ML Pipelines, autograd and custom layer/loss, transfer learning, etc.
 
 ### _`nnframes`_
