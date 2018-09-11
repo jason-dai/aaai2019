@@ -22,7 +22,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 ---
 
 ## Overview
-- [Distributed Tensoflow and Keras on Spark]
+- [Distributed Tensoflow and Keras on Spark](distributed-tensoflow-and-keras-on-spark)
 
 - [High level abstractions and APIs](#high-level-abstractions-and-apis)
   - [`nnframes`](#nnframes): native deep learning support in *Spark DataFrames and ML Pipelines*
