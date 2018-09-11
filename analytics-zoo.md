@@ -22,7 +22,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 ---
 
 ## Overview
-- [High level abstractions and APIs](#high-level-pipeline-apis)
+- [High level abstractions and APIs](#high-level-abstractions-and-apis)
   - [`nnframes`](#nnframes): native deep learning support in *Spark DataFrames and ML Pipelines*
   - [`autograd`](#autograd): build custom layer/loss using *auto differentiation operations* 
   - [Transfer learning](#transfer-learning): customize pretained model for *feature extraction or fine-tuning*
