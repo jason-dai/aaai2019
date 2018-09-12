@@ -278,4 +278,4 @@ Using *Analytics Zoo Image Classification API* (including a set of pretrained de
 *Analytics Zoo Recommendation API* provides a set of pre-defined models (such as Neural Collaborative Filtering, Wide and Deep Learning, etc.) for recommendations. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/recommendation/))
 
 ## _Reference use cases_
-Analytics Zoo provides a collection of end-to-end reference use cases, including *anomaly detection (for time series data)*, *sentiment analysis*, *fraud detection*, *image similarity*, etc. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/usercases-overview/))
+Analytics Zoo provides a collection of end-to-end reference use cases, including *time series anomaly detection*, *sentiment analysis*, *fraud detection*, *image similarity*, etc. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/usercases-overview/))
