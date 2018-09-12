@@ -5,6 +5,10 @@
 
 ## What is Analytics Zoo?
 __Analytics Zoo__ provides a unified analytics + AI platform that seamlessly unites *__Spark, TensorFlow, Keras and BigDL__* programs into an integrated pipeline; the entire pipeline can then transparently scale out to a large Hadoop/Spark cluster for distributed training or inference. 
+- Data wrangling and analysis using PySpark
+- Deep learning model development using TensorFlow or Keras
+- Distributed training/inference on Spark and BigDL
+- All within a single unified pipeline and in a user-transparent fashion!
 
 In addition, Analytics Zoo also provides a rich set of analytics and AI support for the end-to-end pipeline, including:
 - *Easy-to-use abstractions and APIs* (e.g., transfer learning support, autograd operations, Spark Dataframe and ML pipeline support, online model serving API, etc.) 
