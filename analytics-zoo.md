@@ -84,7 +84,7 @@ To make it easy to build and productionize the deep learning applications for Bi
    loss = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels))
    ```
 
-   3. Distributed training on Spark and BigDL
+3. Distributed training on Spark and BigDL
    ```
    from zoo.pipeline.api.net import TFOptimizer
    from bigdl.optim.optimizer import MaxIteration, Adam, MaxEpoch, TrainSummary
