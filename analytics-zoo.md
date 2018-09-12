@@ -19,9 +19,11 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 ## How to use Analytics Zoo?
 - To get started, please refer to the [Python install guide](https://analytics-zoo.github.io/master/#PythonUserGuide/install/) or [Scala install guide](https://analytics-zoo.github.io/master/#ScalaUserGuide/install/).
 
-- For more information, You may refer to the [Analytis Zoo document website](https://analytics-zoo.github.io/)
+- For running distributed TensorFlow on Spark and BigDL, please refer to the quick start [here](#distributed-tensoflow-and-keras-on-sparkbigdl) and more examples [here](https://github.com/intel-analytics/analytics-zoo/tree/master/pyzoo/zoo/examples/tfnet)/
 
-- For additional questions and discussions, you can join the [Google User Group](https://groups.google.com/forum/#!forum/bigdl-user-group) (or subscribe to the [Mail List](mailto:bigdl-user-group+subscribe@googlegroups.com)) 
+- For more information, You may refer to the [Analytis Zoo document website](https://analytics-zoo.github.io/).
+
+- For additional questions and discussions, you can join the [Google User Group](https://groups.google.com/forum/#!forum/bigdl-user-group) (or subscribe to the [Mail List](mailto:bigdl-user-group+subscribe@googlegroups.com)).
 
 ---
 
@@ -47,7 +49,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 - [Reference use cases](#reference-use-cases): a collection of end-to-end *reference use cases* (e.g., anomaly detection, sentiment analysis, fraud detection, image augmentation, object detection, variational autoencoder, etc.)
 
 ## _Distributed Tensoflow and Keras on Spark/BigDL_
-To make it easy to build and productionize the deep learning applications for Big Data, Analytics Zoo provides a unified analytics + AI platform that seamlessly unites Spark, TensorFlow, Keras and BigDL programs into an integrated pipeline, which can then transparently run on a large-scale Hadoop/Spark clusters for distributed training and inference (as illustrated below). 
+To make it easy to build and productionize the deep learning applications for Big Data, Analytics Zoo provides a unified analytics + AI platform that seamlessly unites Spark, TensorFlow, Keras and BigDL programs into an integrated pipeline (as illustrated below), which can then transparently run on a large-scale Hadoop/Spark clusters for distributed training and inference. (Please see more examples [here](https://github.com/intel-analytics/analytics-zoo/tree/master/pyzoo/zoo/examples/tfnet)).
 
 1. Data wrangling and analysis using PySpark
    ```python
