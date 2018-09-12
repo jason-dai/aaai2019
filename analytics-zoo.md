@@ -19,7 +19,7 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 ## How to use Analytics Zoo?
 - To get started, please refer to the [Python install guide](https://analytics-zoo.github.io/master/#PythonUserGuide/install/) or [Scala install guide](https://analytics-zoo.github.io/master/#ScalaUserGuide/install/).
 
-- For running distributed TensorFlow on Spark and BigDL, please refer to the quick start [here](#distributed-tensoflow-and-keras-on-sparkbigdl) and more examples [here](https://github.com/intel-analytics/analytics-zoo/tree/master/pyzoo/zoo/examples/tfnet)/
+- For running distributed TensorFlow on Spark and BigDL, please refer to the quick start [here](#distributed-tensoflow-and-keras-on-sparkbigdl) and more examples [here](https://github.com/intel-analytics/analytics-zoo/tree/master/pyzoo/zoo/examples/tfnet).
 
 - For more information, You may refer to the [Analytis Zoo document website](https://analytics-zoo.github.io/).
 
