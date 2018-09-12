@@ -46,9 +46,6 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 To make it easy to build and productionize the deep learning applications for Big Data, Analytics Zoo provides a unified analytics + AI platform that seamlessly unites Spark, TensorFlow, Keras and BigDL programs into an integrated pipeline, which can then transparently run on a large-scale Hadoop/Spark clusters for distributed training and inference (as illustrated below). 
 
 1. Data wrangling and analysis using PySpark
-
-   You can first load and process the raw data using PySpark to generate a `train_rdd`; each record in the `train_rdd` consists of a list of NumPy ndrrays. Then you can create a `TFDataset` from `train_rdd`; In Analytics Zoo, `TFDataset` represents a distributed set of elements, in which each element contains one or more Tensorflow _Tensor_ objects. 
-
    ```
    from zoo import init_nncontext
    from zoo.pipeline.api.net import TFDataset
