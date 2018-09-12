@@ -52,13 +52,13 @@ To make it easy to build and productionize the deep learning applications for Bi
 
    sc = init_nncontext()
 
-   //Each record in the train_rdd consists of a list of NumPy ndrrays
+   #Each record in the train_rdd consists of a list of NumPy ndrrays
    train_rdd = sc.parallelize(file_list)
      .map(lambda x: read_image_and_label(x))
      .map(lambda image_label: decode_to_ndarrays(image_label))
 
-   //TFDataset represents a distributed set of elements,
-   //in which each element contains one or more Tensorflow Tensor objects. 
+   #TFDataset represents a distributed set of elements,
+   #in which each element contains one or more Tensorflow Tensor objects. 
    dataset = TFDataset.from_rdd(train_rdd,
                                 names=["features", "labels"],
                                 shapes=[[28, 28, 1], [1]],
