@@ -9,7 +9,7 @@ __Analytics Zoo__ provides a unified analytics + AI platform that seamlessly uni
 In addition, Analytics Zoo also provides a rich set of analytics and AI support for the end-to-end pipeline, including:
 - *Easy-to-use abstractions and APIs* (e.g., transfer learning support, autograd operations, Spark Dataframe and ML pipeline support, online model serving API, etc.) 
 -	*Common feature engineering operations* (for image, text, 3D image, etc.)
-- *Built-in deep learning models* (e.g., image classification, object detection, text classification, recommendation, etc.) 
+- *Built-in deep learning models* (e.g., object detection, image classification, text classification, recommendation, etc.) 
 - *Reference use cases* (e.g., anomaly detection, sentiment analysis, fraud detection, image similarity, etc.)
 
 ## How to use Analytics Zoo?
@@ -278,4 +278,4 @@ Using *Analytics Zoo Image Classification API* (including a set of pretrained de
 *Analytics Zoo Recommendation API* provides a set of pre-defined models (such as Neural Collaborative Filtering, Wide and Deep Learning, etc.) for recommendations. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/recommendation/))
 
 ## _Reference use cases_
-Analytics Zoo provides a collection of end-to-end reference use cases, including *anomaly detection (for time series data)*, *sentiment analysis*, *fraud detection*, *image augmentation*, *object detection*, *variational autoencoder*, etc. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/usercases-overview/))
+Analytics Zoo provides a collection of end-to-end reference use cases, including *anomaly detection (for time series data)*, *sentiment analysis*, *fraud detection*, *image similarity*, etc. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/usercases-overview/))
