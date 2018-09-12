@@ -202,7 +202,10 @@ Using the high level transfer learning APIs, you can easily customize pretrained
    from zoo.feature.image import *
    transformer = RowToImageFeature() -> ImageResize(64, 64) -> ImageChannelNormalize(123.0, 117.0, 104.0) \
                  -> ImageMatToTensor() -> ImageFeatureToTensor())
-   ```
+
+   transformer = RowToImageFeature() \-> ImageResize(64, 64)
+
+```
 
 4. Define model using *Keras-style APIs*
    ```python
