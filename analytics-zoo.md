@@ -68,7 +68,7 @@ To make it easy to build and productionize the deep learning applications for Bi
 
 2. Deep learning model development using TensorFlow
 
-   ```
+   ```python
    import tensorflow as tf
 
    slim = tf.contrib.slim
@@ -82,7 +82,7 @@ To make it easy to build and productionize the deep learning applications for Bi
    ```
 
 3. Distributed training on Spark and BigDL
-   ```
+   ```python
    from zoo.pipeline.api.net import TFOptimizer
    from bigdl.optim.optimizer import MaxIteration, Adam, MaxEpoch, TrainSummary
 
@@ -92,7 +92,7 @@ To make it easy to build and productionize the deep learning applications for Bi
    ```
 
 4. Alternatively, using Keras APIs for model development and distribtued training
-   ```
+   ```python
    from zoo.pipeline.api.keras.models import *
    from zoo.pipeline.api.keras.layers import *
 
@@ -118,25 +118,25 @@ Analytics Zoo provides a set of easy-to-use, high level abstractions and APIs th
 Using the high level transfer learning APIs, you can easily customize pretrained models for *feature extraction or fine-tuning*. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/transferlearning/))
 
 1. Load an existing model (pretrained in Caffe)
-   ```
+   ```python
    from zoo.pipeline.api.net import *
    full_model = Net.load_caffe(def_path, model_path)
    ```
 
 2. Remove the last few layers
-   ```
+   ```python
    # create a new model by removing layers after pool5/drop_7x7_s1
    model = full_model.new_graph(["pool5/drop_7x7_s1"])
    ```
 
 3. Freeze the first few layers
-   ```
+   ```python
    # freeze layers from input to pool4/3x3_s2 inclusive
    model.freeze_up_to(["pool4/3x3_s2"])
    ```
 
 4. Add a few new layers
-   ```
+   ```python
    from zoo.pipeline.api.keras.layers import *
    from zoo.pipeline.api.keras.models import *
    inputs = Input(name="input", shape=(3, 224, 224))
@@ -150,7 +150,7 @@ Using the high level transfer learning APIs, you can easily customize pretrained
 `autograd` provides automatic differentiation for math operations, so that you can easily build your own *custom loss and layer* (in both Python and Scala), as illustracted below. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/autograd/))
 
 1. Define model using Keras-style API and `autograd` 
-   ```
+   ```python
    import zoo.pipeline.api.autograd as A
    from zoo.pipeline.api.keras.layers import *
    from zoo.pipeline.api.keras.models import *
@@ -164,13 +164,13 @@ Using the high level transfer learning APIs, you can easily customize pretrained
    ```
 
 2. Optionally define custom loss function using `autograd`
-   ```
+   ```python
    def mean_absolute_error(y_true, y_pred):
        return mean(abs(y_true - y_pred), axis=1)
    ```
 
 3. Train model with *custom loss function*
-   ```
+   ```python
    model.compile(optimizer=SGD(), loss=mean_absolute_error)
    model.fit(x=..., y=...)
    ```
@@ -179,7 +179,7 @@ Using the high level transfer learning APIs, you can easily customize pretrained
 `nnframes` provides *native deep learning support in Spark DataFrames and ML Pipelines*, so that you can easily build complex deep learning pipelines in just a few lines, as illustrated below. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/nnframes/))
 
 1. Initialize *NNContext* and load images into *DataFrames* using `NNImageReader`
-   ```
+   ```python
    from zoo.common.nncontext import *
    from zoo.pipeline.nnframes import *
    sc = init_nncontext()
@@ -187,21 +187,21 @@ Using the high level transfer learning APIs, you can easily customize pretrained
    ```
 
 2. Process loaded data using *DataFrames transformations*
-   ```
+   ```python
    getName = udf(lambda row: ...)
    getLabel = udf(lambda name: ...)
    df = imageDF.withColumn("name", getName(col("image"))).withColumn("label", getLabel(col('name')))
    ```
 
 3. Processing image using built-in *feature engineering operations*
-   ```
+   ```python
    from zoo.feature.image import *
    transformer = RowToImageFeature() -> ImageResize(64, 64) -> ImageChannelNormalize(123.0, 117.0, 104.0) \
                  -> ImageMatToTensor() -> ImageFeatureToTensor())
    ```
 
 4. Define model using *Keras-style APIs*
-   ```
+   ```python
    from zoo.pipeline.api.keras.layers import *
    from zoo.pipeline.api.keras.models import *
    model = Sequential().add(Convolution2D(32, 3, 3, activation='relu', input_shape=(1, 28, 28))) \
@@ -209,7 +209,7 @@ Using the high level transfer learning APIs, you can easily customize pretrained
    ```
 
 5. Train model using *Spark ML Pipelines*
-   ```
+   ```python
    classifier = NNClassifier(model, CrossEntropyCriterion(),transformer).setLearningRate(0.003) \
                    .setBatchSize(40).setMaxEpoch(1).setFeaturesCol("image").setCachingSample(False)
    nnModel = classifier.fit(df)
@@ -219,7 +219,7 @@ Using the high level transfer learning APIs, you can easily customize pretrained
 ### _Model Serving_
 Using the [POJO](https://en.wikipedia.org/wiki/Plain_old_Java_object) model serving API, you can productionize model serving and infernece in any Java based frameworks (e.g., [Spring Framework](https://spring.io), Apache [Storm](http://storm.apache.org), [Kafka](http://kafka.apache.org) or [Flink](http://flink.apache.org), etc.), as illustrated below:
 
-```
+```python
 import com.intel.analytics.zoo.pipeline.inference.AbstractInferenceModel;
 import com.intel.analytics.zoo.pipeline.inference.JTensor;
 
@@ -248,7 +248,7 @@ Using *Analytics Zoo Object Detection API* (including a set of pretrained detect
    You can download a collection of detection models (pretrained on the PSCAL VOC dataset and COCO dataset) from [detection model zoo](https://analytics-zoo.github.io/master/#ProgrammingGuide/object-detection/#download-link).
 
 2. Use *Object Detection API* for off-the-shell inference
-   ```
+   ```python
    from zoo.models.image.objectdetection import *
    model = ObjectDetector.load_model(model_path)
    image_set = ImageSet.read(img_path, sc)
@@ -263,7 +263,7 @@ Using *Analytics Zoo Image Classification API* (including a set of pretrained de
    You can download a collection of image classification models (pretrained on the ImageNet dataset) from [image classification model zoo](https://analytics-zoo.github.io/master/#ProgrammingGuide/image-classification/#download-link).
 
 2. Use *Image classification API* for off-the-shell inference
-   ```
+   ```python
    from zoo.models.image.imageclassification import *
    model = ImageClassifier.load_model(model_path)
    image_set = ImageSet.read(img_path, sc)
