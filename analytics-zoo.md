@@ -7,10 +7,10 @@
 __Analytics Zoo__ provides a unified analytics + AI platform that seamlessly unites *__Spark, TensorFlow, Keras and BigDL__* programs into an integrated pipeline; the entire pipeline can then transparently scale out to a large Hadoop/Spark cluster for distributed training or inference. 
 
 In addition, Analytics Zoo also provides a rich set of analytics and AI support for the end-to-end pipeline, including:
-- *Easy-to-use abstractions and APIs* (such as transfer learning support, autograd operations, Spark Dataframe and ML pipeline support, online model serving API, etc.) 
+- *Easy-to-use abstractions and APIs* (e.g., transfer learning support, autograd operations, Spark Dataframe and ML pipeline support, online model serving API, etc.) 
 -	*Common feature engineering operations* (for image, text, 3D image, etc.)
-- *Built-in deep learning models* (such as image classification, object detection, text classification, recommendation, etc.) 
-- *Reference use cases* (such as anomaly detection, sentiment analysis, fraud detection, image similarity, etc.)
+- *Built-in deep learning models* (e.g., image classification, object detection, text classification, recommendation, etc.) 
+- *Reference use cases* (e.g., anomaly detection, sentiment analysis, fraud detection, image similarity, etc.)
 
 ## How to use Analytics Zoo?
 - To get started, please refer to the [Python install guide](https://analytics-zoo.github.io/master/#PythonUserGuide/install/) or [Scala install guide](https://analytics-zoo.github.io/master/#ScalaUserGuide/install/).
@@ -29,9 +29,9 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
   - All within a single unified pipeline and in a user-transparent fashion!
 
 - [High level abstractions and APIs](#high-level-abstractions-and-apis)
-  - [`nnframes`](#nnframes): native deep learning support in *Spark DataFrames and ML Pipelines*
-  - [`autograd`](#autograd): build custom layer/loss using *auto differentiation operations* 
   - [Transfer learning](#transfer-learning): customize pretained model for *feature extraction or fine-tuning*
+  - [`autograd`](#autograd): build custom layer/loss using *auto differentiation operations* 
+  - [`nnframes`](#nnframes): native deep learning support in *Spark DataFrames and ML Pipelines*
   - [Model serving](#model-serving): productionize *model serving and inference* using [POJO](https://en.wikipedia.org/wiki/Plain_old_Java_object) APIs
   
 - [Built-in deep learning models](#built-in-deep-learning-models)
@@ -113,7 +113,68 @@ model.fit(train_rdd, batch_size=BATCH_SIZE, nb_epoch=5)
 ```
 
 ## _High level abstractions and APIs_
-Analytics Zoo provides a set of easy-to-use, high level pipeline APIs that natively support Spark DataFrames and ML Pipelines, autograd and custom layer/loss, transfer learning, etc.
+Analytics Zoo provides a set of easy-to-use, high level abstractions and APIs that natively transfer learning, autograd and custom layer/loss, Spark DataFrames and ML Pipelines, online model serving, etc. etc.
+
+### _Transfer learning_
+Using the high level transfer learning APIs, you can easily customize pretrained models for *feature extraction or fine-tuning*. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/transferlearning/))
+
+1. Load an existing model (pretrained in Caffe)
+   ```
+   from zoo.pipeline.api.net import *
+   full_model = Net.load_caffe(def_path, model_path)
+   ```
+
+2. Remove the last few layers
+   ```
+   # create a new model by removing layers after pool5/drop_7x7_s1
+   model = full_model.new_graph(["pool5/drop_7x7_s1"])
+   ```
+
+3. Freeze the first few layers
+   ```
+   # freeze layers from input to pool4/3x3_s2 inclusive
+   model.freeze_up_to(["pool4/3x3_s2"])
+   ```
+
+4. Add a few new layers
+   ```
+   from zoo.pipeline.api.keras.layers import *
+   from zoo.pipeline.api.keras.models import *
+   inputs = Input(name="input", shape=(3, 224, 224))
+   inception = model.to_keras()(inputs)
+   flatten = Flatten()(inception)
+   logits = Dense(2)(flatten)
+   newModel = Model(inputs, logits)
+   ```
+
+### _`autograd`_
+`autograd` provides automatic differentiation for math operations, so that you can easily build your own *custom loss and layer* (in both Python and Scala), as illustracted below. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/autograd/))
+
+1. Define model using Keras-style API and `autograd` 
+   ```
+   import zoo.pipeline.api.autograd as A
+   from zoo.pipeline.api.keras.layers import *
+   from zoo.pipeline.api.keras.models import *
+
+   input = Input(shape=[2, 20])
+   features = TimeDistributed(layer=Dense(30))(input)
+   f1 = features.index_select(1, 0)
+   f2 = features.index_select(1, 1)
+   diff = A.abs(f1 - f2)
+   model = Model(input, diff)
+   ```
+
+2. Optionally define custom loss function using `autograd`
+   ```
+   def mean_absolute_error(y_true, y_pred):
+       return mean(abs(y_true - y_pred), axis=1)
+   ```
+
+3. Train model with *custom loss function*
+   ```
+   model.compile(optimizer=SGD(), loss=mean_absolute_error)
+   model.fit(x=..., y=...)
+   ```
 
 ### _`nnframes`_
 `nnframes` provides *native deep learning support in Spark DataFrames and ML Pipelines*, so that you can easily build complex deep learning pipelines in just a few lines, as illustrated below. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/nnframes/))
@@ -155,66 +216,6 @@ Analytics Zoo provides a set of easy-to-use, high level pipeline APIs that nativ
    nnModel = classifier.fit(df)
    ```
    
-### _`autograd`_
-`autograd` provides automatic differentiation for math operations, so that you can easily build your own *custom loss and layer* (in both Python and Scala), as illustracted below. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/autograd/))
-
-1. Define model using Keras-style API and `autograd` 
-   ```
-   import zoo.pipeline.api.autograd as A
-   from zoo.pipeline.api.keras.layers import *
-   from zoo.pipeline.api.keras.models import *
-
-   input = Input(shape=[2, 20])
-   features = TimeDistributed(layer=Dense(30))(input)
-   f1 = features.index_select(1, 0)
-   f2 = features.index_select(1, 1)
-   diff = A.abs(f1 - f2)
-   model = Model(input, diff)
-   ```
-
-2. Optionally define custom loss function using `autograd`
-   ```
-   def mean_absolute_error(y_true, y_pred):
-       return mean(abs(y_true - y_pred), axis=1)
-   ```
-
-3. Train model with *custom loss function*
-   ```
-   model.compile(optimizer=SGD(), loss=mean_absolute_error)
-   model.fit(x=..., y=...)
-   ```
-
-### _Transfer learning_
-Using the high level transfer learning APIs, you can easily customize pretrained models for *feature extraction or fine-tuning*. (See more details [here](https://analytics-zoo.github.io/master/#ProgrammingGuide/transferlearning/))
-
-1. Load an existing model (pretrained in Caffe)
-   ```
-   from zoo.pipeline.api.net import *
-   full_model = Net.load_caffe(def_path, model_path)
-   ```
-
-2. Remove the last few layers
-   ```
-   # create a new model by removing layers after pool5/drop_7x7_s1
-   model = full_model.new_graph(["pool5/drop_7x7_s1"])
-   ```
-
-3. Freeze the first few layers
-   ```
-   # freeze layers from input to pool4/3x3_s2 inclusive
-   model.freeze_up_to(["pool4/3x3_s2"])
-   ```
-
-4. Add a few new layers
-   ```
-   from zoo.pipeline.api.keras.layers import *
-   from zoo.pipeline.api.keras.models import *
-   inputs = Input(name="input", shape=(3, 224, 224))
-   inception = model.to_keras()(inputs)
-   flatten = Flatten()(inception)
-   logits = Dense(2)(flatten)
-   newModel = Model(inputs, logits)
-   ```
 
 ### _Model Serving_
 Using the [POJO](https://en.wikipedia.org/wiki/Plain_old_Java_object) model serving API, you can productionize model serving and infernece in any Java based frameworks (e.g., [Spring Framework](https://spring.io), Apache [Storm](http://storm.apache.org), [Kafka](http://kafka.apache.org) or [Flink](http://flink.apache.org), etc.), as illustrated below:
