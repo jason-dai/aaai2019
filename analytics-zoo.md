@@ -47,70 +47,72 @@ To make it easy to build and productionize the deep learning applications for Bi
 
 1. Data wrangling and analysis using PySpark
 
-```
-from zoo import init_nncontext
-from zoo.pipeline.api.net import TFDataset
+   You can first load and process the raw data using PySpark to generate a `train_rdd`; each record in the `train_rdd` consists of a list of NumPy ndrrays. Then you can create a `TFDataset` from `train_rdd`; In Analytics Zoo, `TFDataset` represents a distributed set of elements, in which each element contains one or more Tensorflow _Tensor_ objects. 
 
-sc = init_nncontext()
+   ```
+   from zoo import init_nncontext
+   from zoo.pipeline.api.net import TFDataset
 
-//Each record in train_rdd consists of a list of NumPy ndrrays 
-train_rdd = sc.parallelize(file_list)
-  .map(lambda x: read_image_and_label(x))
-  .map(lambda image_label: decode_to_ndarrays(image_label))
+   sc = init_nncontext()
 
-//TFDataset represents a distributed set of elements,
-//in which each element contains one or more Tensorflow Tensor objects. 
-dataset = TFDataset.from_rdd(train_rdd,
-                             names=["features", "labels"],
-                             shapes=[[28, 28, 1], [1]],
-                             types=[tf.float32, tf.int32],
-                             batch_size=BATCH_SIZE)
-```
+   //Each record in the train_rdd consists of a list of NumPy ndrrays
+   train_rdd = sc.parallelize(file_list)
+     .map(lambda x: read_image_and_label(x))
+     .map(lambda image_label: decode_to_ndarrays(image_label))
+
+   //TFDataset represents a distributed set of elements,
+   //in which each element contains one or more Tensorflow Tensor objects. 
+   dataset = TFDataset.from_rdd(train_rdd,
+                                names=["features", "labels"],
+                                shapes=[[28, 28, 1], [1]],
+                                types=[tf.float32, tf.int32],
+                                batch_size=BATCH_SIZE)
+   ```
 
 2. Deep learning model development using TensorFlow
 
-```
-import tensorflow as tf
+   ```
+   import tensorflow as tf
 
-slim = tf.contrib.slim
+   slim = tf.contrib.slim
 
-images, labels = dataset.tensors
-labels = tf.squeeze(labels)
-with slim.arg_scope(lenet.lenet_arg_scope()):
-     logits, end_points = lenet.lenet(images, num_classes=10, is_training=True)
+   images, labels = dataset.tensors
+   labels = tf.squeeze(labels)
+   with slim.arg_scope(lenet.lenet_arg_scope()):
+        logits, end_points = lenet.lenet(images, num_classes=10, is_training=True)
 
-loss = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels))
-```
+   loss = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels))
+   ```
 
-3. Distributed training on Spark and BigDL
-```
-from zoo.pipeline.api.net import TFOptimizer
-from bigdl.optim.optimizer import MaxIteration, Adam, MaxEpoch, TrainSummary
+   3. Distributed training on Spark and BigDL
+   ```
+   from zoo.pipeline.api.net import TFOptimizer
+   from bigdl.optim.optimizer import MaxIteration, Adam, MaxEpoch, TrainSummary
 
-optimizer = TFOptimizer(loss, Adam(1e-3))
-optimizer.set_train_summary(TrainSummary("/tmp/az_lenet", "lenet"))
-optimizer.optimize(end_trigger=MaxEpoch(5))
-```
+   optimizer = TFOptimizer(loss, Adam(1e-3))
+   optimizer.set_train_summary(TrainSummary("/tmp/az_lenet", "lenet"))
+   optimizer.optimize(end_trigger=MaxEpoch(5))
+   ```
 
-4. Using Keras APIs for model development and training
-```
-from zoo.pipeline.api.keras.models import *
-from zoo.pipeline.api.keras.layers import *
+4. Alternatively, using Keras APIs for model development and distribtued training
+   ```
+   from zoo.pipeline.api.keras.models import *
+   from zoo.pipeline.api.keras.layers import *
 
-model = Sequential()
-model.add(Reshape((1, 28, 28), input_shape=(28, 28, 1)))
-model.add(Convolution2D(6, 5, 5, activation="tanh", name="conv1_5x5"))
-model.add(MaxPooling2D())
-model.add(Convolution2D(12, 5, 5, activation="tanh", name="conv2_5x5"))
-model.add(MaxPooling2D())
-model.add(Flatten())
-model.add(Dense(100, activation="tanh", name="fc1"))
-model.add(Dense(class_num, activation="softmax", name="fc2"))
+   model = Sequential()
+   model.add(Reshape((1, 28, 28), input_shape=(28, 28, 1)))
+   model.add(Convolution2D(6, 5, 5, activation="tanh", name="conv1_5x5"))
+   model.add(MaxPooling2D())
+   model.add(Convolution2D(12, 5, 5, activation="tanh", name="conv2_5x5"))
+   model.add(MaxPooling2D())
+   model.add(Flatten())
+   model.add(Dense(100, activation="tanh", name="fc1"))
+   model.add(Dense(class_num, activation="softmax", name="fc2"))
 
-model.compile(loss='sparse_categorical_crossentropy',
-              optimizer='adam')
-model.fit(train_rdd, batch_size=BATCH_SIZE, nb_epoch=5)
-```
+   model.compile(loss='sparse_categorical_crossentropy',
+                 optimizer='adam')
+   model.fit(train_rdd, batch_size=BATCH_SIZE, nb_epoch=5)
+   ```
 
 ## _High level abstractions and APIs_
 Analytics Zoo provides a set of easy-to-use, high level abstractions and APIs that natively transfer learning, autograd and custom layer/loss, Spark DataFrames and ML Pipelines, online model serving, etc. etc.
