@@ -43,15 +43,74 @@ In addition, Analytics Zoo also provides a rich set of analytics and AI support 
 - [Reference use cases](#reference-use-cases): a collection of end-to-end *reference use cases* (e.g., anomaly detection, sentiment analysis, fraud detection, image augmentation, object detection, variational autoencoder, etc.)
 
 ## _Distributed Tensoflow and Keras on Spark/BigDL_
-To make it easy for the users to build and productionize the deep learning applications for Big Data, Analytics Zoo provides a unified analytics + AI platform that seamlessly unites Spark, TensorFlow, Keras and BigDL programs into an integrated pipeline, which can then transparently run on a large-scale Hadoop/Spark clusters for distributed training and inference. 
+To make it easy to build and productionize the deep learning applications for Big Data, Analytics Zoo provides a unified analytics + AI platform that seamlessly unites Spark, TensorFlow, Keras and BigDL programs into an integrated pipeline, which can then transparently run on a large-scale Hadoop/Spark clusters for distributed training and inference (as illustrated below). 
 
 1. Data wrangling and analysis using PySpark
 
+```
+from zoo import init_nncontext
+from zoo.pipeline.api.net import TFDataset
+
+sc = init_nncontext()
+
+//Each record in train_rdd consists of a list of NumPy ndrrays 
+train_rdd = sc.parallelize(file_list)
+  .map(lambda x: read_image_and_label(x))
+  .map(lambda image_label: decode_to_ndarrays(image_label))
+
+//TFDataset represents a distributed set of elements,
+//in which each element contains one or more Tensorflow Tensor objects. 
+dataset = TFDataset.from_rdd(train_rdd,
+                             names=["features", "labels"],
+                             shapes=[[28, 28, 1], [1]],
+                             types=[tf.float32, tf.int32],
+                             batch_size=BATCH_SIZE)
+```
+
 2. Deep learning model development using TensorFlow
 
-3. Distributed training/inference on Spark and BigDL
+```
+import tensorflow as tf
+
+slim = tf.contrib.slim
+
+images, labels = dataset.tensors
+labels = tf.squeeze(labels)
+with slim.arg_scope(lenet.lenet_arg_scope()):
+     logits, end_points = lenet.lenet(images, num_classes=10, is_training=True)
+
+loss = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels))
+```
+
+3. Distributed training on Spark and BigDL
+```
+from zoo.pipeline.api.net import TFOptimizer
+from bigdl.optim.optimizer import MaxIteration, Adam, MaxEpoch, TrainSummary
+
+optimizer = TFOptimizer(loss, Adam(1e-3))
+optimizer.set_train_summary(TrainSummary("/tmp/az_lenet", "lenet"))
+optimizer.optimize(end_trigger=MaxEpoch(5))
+```
 
 4. Using Keras APIs for model development and training
+```
+from zoo.pipeline.api.keras.models import *
+from zoo.pipeline.api.keras.layers import *
+
+model = Sequential()
+model.add(Reshape((1, 28, 28), input_shape=(28, 28, 1)))
+model.add(Convolution2D(6, 5, 5, activation="tanh", name="conv1_5x5"))
+model.add(MaxPooling2D())
+model.add(Convolution2D(12, 5, 5, activation="tanh", name="conv2_5x5"))
+model.add(MaxPooling2D())
+model.add(Flatten())
+model.add(Dense(100, activation="tanh", name="fc1"))
+model.add(Dense(class_num, activation="softmax", name="fc2"))
+
+model.compile(loss='sparse_categorical_crossentropy',
+              optimizer='adam')
+model.fit(train_rdd, batch_size=BATCH_SIZE, nb_epoch=5)
+```
 
 ## _High level abstractions and APIs_
 Analytics Zoo provides a set of easy-to-use, high level pipeline APIs that natively support Spark DataFrames and ML Pipelines, autograd and custom layer/loss, transfer learning, etc.
