@@ -1,4 +1,4 @@
-## Build Deep Learning Applications for Big Data Platforms using [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo)
+## Build Deep Learning Applications for Big Data using [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo)
 **_Distributed TensorFlow, Keras and BigDL on Apache Spark_**
 
 ___
