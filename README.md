@@ -14,11 +14,10 @@ _Sunday, January 27 (1:30PM - 5:30PM), 2019_
 
 | 1:30PM - 1:45PM | Motivation |
 | 1:45PM - 2:15PM | DL frameworks on Apache Spark |
-| 2:15PM - 2:30PM | Analytics Zoo for Spark and BigDL |
-| 2:30PM - 2:40PM | Break |
-| 2:40PM - 3:00PM | Analytics Zoo Examples |
-| 3:00PM - 3:30PM | Distributed training |
-| 3:30PM - 4:00PM | Break |
-| 4:00PM - 4:45PM | Advanced applications |
+| 2:15PM - 2:35PM | Analytics Zoo for Spark and BigDL |
+| 2:35PM - 3:15PM | Analytics Zoo Examples |
+| 3:15PM - 3:45PM | Break |
+| 3:45PM - 4:15PM | Distributed training |
+| 4:15PM - 4:55PM | Advanced applications |
 | 4:45PM - 5:20PM | Real-world applications |
 | 5:20PM - 5:30PM | Q&A |
