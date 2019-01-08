@@ -11,6 +11,7 @@ Recent breakthroughs in artificial intelligence applications have brought deep l
 
 ## Schedule
 _Sunday, January 27 (1:30PM - 5:30PM), 2019_
+
 | 1:30PM - 1:45PM | Motivation |
 | 1:45PM - 2:15PM | DL frameworks on Apache Spark |
 | 2:15PM - 2:35PM | Analytics Zoo for Spark and BigDL |
