@@ -23,5 +23,5 @@ _Sunday, January 27 (1:30PM - 5:30PM), 2019_
 | 5:20PM - 5:30PM | Q&A |
 
 ## Link
-* Slides ([pdf](slides/AI%20on%20Big%20Data%20(Jason%20Dai).pdf)
+* Slides ([pdf](slides/AI%20on%20Big%20Data%20(Jason%20Dai).pdf))
 * Previous [tutorial](https://jason-dai.github.io/cvpr2018/) at CVPR 2018
