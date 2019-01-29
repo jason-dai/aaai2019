@@ -21,3 +21,7 @@ _Sunday, January 27 (1:30PM - 5:30PM), 2019_
 | 4:15PM - 4:35PM | Advanced applications |
 | 4:35PM - 5:20PM | Real-world applications |
 | 5:20PM - 5:30PM | Q&A |
+
+## Link
+* Slides ([pdf](slides/AI%20on%20Big%20Data%20(Jason%20Dai).pdf)
+* Previous [tutorial](https://jason-dai.github.io/cvpr2018/) at CVPR 2018
