@@ -4,7 +4,7 @@
 ___
 
 ## Speaker
-[Jason Dai](https://www.linkedin.com/in/jasondai/)
+[Jason Dai](https://jason-dai.github.io/)
 
 ## Description
 Recent breakthroughs in artificial intelligence applications have brought deep learning to the forefront of new generations of data analytics. In this tutorial, we will present the practice and design tradeoffs on building large-scale deep learning applications (such as computer vision and NLP), for production data and workflow on Big Data platforms. We will provide an overview of emerging deep learning frameworks for Big Data (e.g., BigDL, TensorFlowOnSpark, Deep Learning Pipelines for Apache Spark, etc.), and present the underlying distributed systems and algorithms. More importantly, we will show how to build and productionize end-to-end deep learning application pipelines for Big Data (on top of [Analytics Zoo](https://github.com/intel-analytics/analytics-zoo), a unified analytics + AI platform for distributed TensorFlow, Keras and BigDL on Apache Spark), using real-world use cases (such as Azure, JD.com, World Bank, Midea/KUKA, etc.)
